@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".add"
+    android:background="@drawable/color_fondo">
+
+    <TextView
+        android:id="@+id/txt_n"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Nueva orden"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txt_ape_nom"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="42dp"
+        android:hint="   Apellido y Nombre"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="#000000"
+        android:inputType="text"
+        android:textColorHint="#575454"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_n"/>
+
+    <EditText
+        android:id="@+id/txt_tel"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="42dp"
+        android:hint="   Numero de telefono"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="#000000"
+        android:inputType="number"
+        android:textColorHint="#575454"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_ape_nom" />
+
+    <EditText
+        android:id="@+id/txt_email"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="42dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="   Email"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHint="#575454"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tel" />
+
+    <EditText
+        android:id="@+id/txt_mar"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="42dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="   Marca y Modelo"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHint="#575454"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_email" />
+
+    <EditText
+        android:id="@+id/txt_deta"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="42dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="   Detalle de falla"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHint="#575454"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_mar" />
+
+    <EditText
+        android:id="@+id/txt_tra"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="42dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="   Trabajo a realizar"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHint="#575454"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_deta" />
+
+    <EditText
+        android:id="@+id/txt_pre"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="42dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="   Presupuesto"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHint="#575454"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tra" />
+
+    <Button
+        android:id="@+id/btn_re"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="45dp"
+        android:backgroundTint="#FF0000"
+        android:text="Registrar"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_pre" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

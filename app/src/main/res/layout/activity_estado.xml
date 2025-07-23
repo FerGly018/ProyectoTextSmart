@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".estado"
+    android:background="@drawable/color_fondo">
+
+    <TextView
+        android:id="@+id/txt_n"
+        android:layout_width="226dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="24dp"
+        android:text="Estado del dispositivo"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_dis"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="#FF0000"
+        android:text="Dispositivo"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_n" />
+
+    <Button
+        android:id="@+id/btn_rea"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:backgroundTint="#FF0000"
+        android:text="Realizado / no se pudo"
+        android:textColor="@color/white"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_dis" />
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#FF0000"
+        android:text="Notificar al cliente"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_rea" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

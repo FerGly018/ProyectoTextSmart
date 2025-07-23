@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistrarActivity"
+    android:background="@drawable/color_fondo"
+    >
+
+    <TextView
+        android:id="@+id/txt_re"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="Registrar"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txt_ape"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="42dp"
+        android:hint="   Apellido y Nombre"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="#000000"
+        android:inputType="text"
+        android:textColorHint="#575454"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_re"/>
+
+    <EditText
+        android:id="@+id/txt_dni"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="#000000"
+        android:hint="   D.N.I"
+        android:inputType="text"
+        android:textColorHint="#575454"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_ape" />
+
+    <EditText
+        android:id="@+id/txt_email"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="#000000"
+        android:hint="   Email"
+        android:inputType="text"
+        android:textColorHint="#575454"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_dni"/>
+
+    <EditText
+        android:id="@+id/txt_clave"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_edittext"
+        android:inputType="textPassword"
+        android:textColor="#000000"
+        android:hint=" Clave"
+        android:textColorHint="#575454"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_email"/>
+
+    <EditText
+        android:id="@+id/txt_repclave"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="32dp"
+        android:hint=" Repetir clave"
+        android:textColorHint="#575454"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="#000000"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_clave" />
+
+
+    <Button
+        android:id="@+id/registrar"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="#FF0000"
+        android:text="Crear cuenta"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_repclave" />
+
+    <TextView
+        android:id="@+id/txt_terminos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="Terminos y condiciones"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrar" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
