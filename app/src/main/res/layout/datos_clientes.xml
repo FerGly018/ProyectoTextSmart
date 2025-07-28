@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:background="#DDE2EB"
+    android:id="@+id/main">
+
+    <!-- Contenedor de texto para los detalles del producto -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!-- Cliente -->
+        <TextView
+            android:id="@+id/txt_cliente"
+            android:layout_width="302dp"
+            android:layout_height="wrap_content"
+            android:text="Cliente"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Marca y modelo -->
+        <TextView
+            android:id="@+id/txt_marca"
+            android:layout_width="302dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Marca - Modelo"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp" />
+
+        <!-- Trabajo a realizar -->
+        <TextView
+            android:id="@+id/txt_trabajo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="trabajo a realizar"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+            <!-- Presupuesto -->
+        <TextView
+            android:id="@+id/txt_presupuesto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Presupuesto"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+    <!-- Botón de eliminar -->
+    <ImageButton
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_delete" />
+
+    <!-- Botón de editar -->
+    <ImageButton
+        android:id="@+id/btn_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_edit" />
+</LinearLayout>

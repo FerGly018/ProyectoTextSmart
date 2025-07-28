@@ -23,9 +23,10 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="380dp"
+        android:layout_height="380dp"
+
+        android:layout_marginTop="25dp"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -33,11 +34,12 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_i" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btn_add"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="36dp"
         android:layout_marginBottom="84dp"
+        android:background="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
@@ -46,25 +48,27 @@
         tools:ignore="MissingConstraints" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/btn_search"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="80dp"
+        android:background="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+        app:layout_constraintEnd_toStartOf="@+id/btn_dispo"
         app:layout_constraintHorizontal_bias="0.438"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toEndOf="@+id/btn_add"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.913"
         app:srcCompat="@drawable/ic_search" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/btn_dispo"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="84dp"
+        android:background="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
