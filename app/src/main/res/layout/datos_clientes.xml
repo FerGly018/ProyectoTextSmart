@@ -55,15 +55,8 @@
             android:textStyle="bold" />
 
     </LinearLayout>
-    <!-- Botón de eliminar -->
-    <ImageButton
-        android:id="@+id/btn_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_delete" />
 
-    <!-- Botón de editar -->
+    <!-- Botón de edit -->
     <ImageButton
         android:id="@+id/btn_edit"
         android:layout_width="wrap_content"

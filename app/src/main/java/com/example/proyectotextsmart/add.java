@@ -56,7 +56,7 @@ public class add extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             try {
-                URL url = new URL("http://192.168.0.17/conexion_mysql/insertcli.php"); // Cambia por tu ruta
+                URL url = new URL("http://192.168.0.24/conexion_mysql/insertcli.php"); // Cambia por tu ruta
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setDoOutput(true);

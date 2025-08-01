@@ -8,55 +8,70 @@
     tools:context=".estado"
     android:background="@drawable/color_fondo">
 
+
     <TextView
         android:id="@+id/txt_n"
-        android:layout_width="226dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="24dp"
-        android:text="Estado del dispositivo"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="28dp"
+        android:text="Estado del Disp."
         android:textColor="@color/white"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_dis"
+
+    <Spinner
+        android:id="@+id/mi_spinner"
         android:layout_width="300dp"
         android:layout_height="45dp"
-        android:layout_marginTop="100dp"
-        android:backgroundTint="#FF0000"
-        android:text="Dispositivo"
-        android:textColor="@color/white"
+        android:layout_marginTop="84dp"
+
+        android:prompt="@string/titulo_spinner"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_n" />
 
-    <Button
-        android:id="@+id/btn_rea"
-        android:layout_width="300dp"
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="111dp"
         android:layout_height="45dp"
-        android:backgroundTint="#FF0000"
-        android:text="Realizado / no se pudo"
-        android:textColor="@color/white"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/fondo_check"
+        android:text="Disp. Listo"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_dis" />
+        app:layout_constraintTop_toBottomOf="@+id/mi_spinner" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="149dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="56dp"
+        android:background="@drawable/fondo_check"
+        android:text="Disp. No se pudo"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mi_spinner" />
 
     <Button
+        android:id="@+id/btn_notificar"
         android:layout_width="300dp"
         android:layout_height="45dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="#FF0000"
         android:text="Notificar al cliente"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_rea" />
-
+        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

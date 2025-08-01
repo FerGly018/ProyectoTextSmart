@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("LOGIN_TASK", "Ejecutando loginTask con email=" + email);
 
         try {
-            URL url = new URL("http://192.168.0.17/conexion_mysql/login.php");
+            URL url = new URL("http://192.168.0.24/conexion_mysql/login.php");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("POST");
             urlConnection.setDoOutput(true);

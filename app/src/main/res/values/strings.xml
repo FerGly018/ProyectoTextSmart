@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">ProyectoTextSmart</string>
     <string name="title_activity_main2">MainActivity2</string>
+
+
+
+    <string name="titulo_spinner">Selecciona una opción</string>
+
+
 </resources>
+

@@ -91,7 +91,7 @@ public class clientes extends AppCompatActivity {
     private class ObtenerClientes extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... voids) {
-            String urlWebService = "http://192.168.0.17/conexion_mysql/obtenercliente.php";
+            String urlWebService = "http://192.168.0.24/conexion_mysql/obtenercliente.php";
 
             try {
                 URL url = new URL(urlWebService);
@@ -140,7 +140,6 @@ public class clientes extends AppCompatActivity {
             TextView txtTrabajo = itemView.findViewById(R.id.txt_trabajo);
             TextView txtPresupuesto = itemView.findViewById(R.id.txt_presupuesto);
 
-            ImageButton btnDelete = itemView.findViewById(R.id.btn_delete);
             ImageButton btnEdit = itemView.findViewById(R.id.btn_edit);
 
 
@@ -152,10 +151,6 @@ public class clientes extends AppCompatActivity {
             // Obtener el ID del cliente
             int idCliente = cliente.getInt("id_clientes");
 
-            btnDelete.setOnClickListener(v -> {
-                contenedorClientes.removeView(itemView); // quitar visualmente
-                eliminarClientePorId(idCliente); // eliminar de BD
-            });
 
             btnEdit.setOnClickListener(v -> {
                 Intent intent = new Intent(clientes.this, edit.class);
@@ -168,48 +163,5 @@ public class clientes extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-    private void eliminarClientePorId(int idCliente) {
-        Log.d("EliminarCliente", "Eliminando cliente con id_clientes: " + idCliente);
-        new Thread(() -> {
-            try {
-                URL url = new URL("http://192.168.0.17/conexion_mysql/deletecliente.php");
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestMethod("POST");
-                urlConnection.setDoOutput(true);
-                urlConnection.setDoInput(true);
-
-                String data = URLEncoder.encode("id_clientes", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(idCliente), "UTF-8");
-
-                Writer writer = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream()));
-                writer.write(data);
-                writer.flush();
-                writer.close();
-
-                InputStream inputStream = urlConnection.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                StringBuilder result = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    result.append(line);
-                }
-                reader.close();
-                inputStream.close();
-
-                String respuestaServidor = result.toString();
-                Log.d("EliminarCliente", "Respuesta del servidor: " + respuestaServidor);
-
-                new Handler(Looper.getMainLooper()).post(() ->
-                        Toast.makeText(clientes.this, respuestaServidor, Toast.LENGTH_SHORT).show()
-                );
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.e("EliminarCliente", "Error al eliminar cliente: " + e.getMessage());
-                new Handler(Looper.getMainLooper()).post(() ->
-                        Toast.makeText(clientes.this, "Error de conexión al eliminar cliente", Toast.LENGTH_SHORT).show()
-                );
-            }
-        }).start();
     }
 }

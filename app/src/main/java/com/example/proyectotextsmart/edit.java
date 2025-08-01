@@ -1,5 +1,6 @@
 package com.example.proyectotextsmart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -25,7 +26,7 @@ import java.net.URLEncoder;
 public class edit extends AppCompatActivity {
 
     EditText editNombre, editTelefono, editIMEI, editMarcaModelo, editDetalleFalla, editTrabajoRealizar, editPresupuesto;
-    Button btnGuardarCambios;
+    Button btnGuardarCambios, btn_cancelar, btn_delete;
     int idCliente;
     private static final String TAG = "EDIT_CLIENTE";
 
@@ -43,6 +44,19 @@ public class edit extends AppCompatActivity {
         editTrabajoRealizar = findViewById(R.id.txt_tra);
         editPresupuesto = findViewById(R.id.txt_pre);
         btnGuardarCambios = findViewById(R.id.btn_edit);
+        btn_cancelar = findViewById(R.id.btn_cancelar);
+        btn_delete = findViewById(R.id.btn_delete);
+
+
+        btn_delete.setOnClickListener(v -> {
+
+            eliminarClientePorId(idCliente); // eliminar de BD
+        });
+
+        btn_cancelar.setOnClickListener(v ->{
+            Intent i = new Intent(edit.this, clientes.class);
+            startActivity(i);
+        });
 
         // Obtener ID del cliente desde el Intent
         idCliente = getIntent().getIntExtra("id", -1);
@@ -57,10 +71,60 @@ public class edit extends AppCompatActivity {
         btnGuardarCambios.setOnClickListener(v -> modificarCliente());
     }
 
+    private void eliminarClientePorId(int idCliente) {
+        Log.d("EliminarCliente", "Eliminando cliente con id_clientes: " + idCliente);
+        new Thread(() -> {
+            try {
+                URL url = new URL("http://192.168.0.24/conexion_mysql/deletecliente.php");
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setDoOutput(true);
+                urlConnection.setDoInput(true);
+
+                String data = URLEncoder.encode("id_clientes", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(idCliente), "UTF-8");
+
+                Writer writer = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream()));
+                writer.write(data);
+                writer.flush();
+                writer.close();
+
+                InputStream inputStream = urlConnection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder result = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+                reader.close();
+                inputStream.close();
+
+                String respuestaServidor = result.toString();
+                Log.d("EliminarCliente", "Respuesta del servidor: " + respuestaServidor);
+
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    Toast.makeText(edit.this, respuestaServidor, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(edit.this, clientes.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish(); // Opcional: cierra la actividad actual
+                });
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("EliminarCliente", "Error al eliminar cliente: " + e.getMessage());
+                new Handler(Looper.getMainLooper()).post(() ->
+                        Toast.makeText(edit.this, "Error de conexión al eliminar cliente", Toast.LENGTH_SHORT).show()
+                );
+            }
+        }).start();
+
+    }
+
     private void cargarClienteDesdeServidor(int idCliente) {
         new Thread(() -> {
             try {
-                URL url = new URL("http://192.168.0.17/conexion_mysql/datoscliente.php?id_clientes=" + idCliente);
+                URL url = new URL("http://192.168.0.24/conexion_mysql/datoscliente.php?id_clientes=" + idCliente);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
 
@@ -111,7 +175,7 @@ public class edit extends AppCompatActivity {
 
         new Thread(() -> {
             try {
-                URL url = new URL("http://192.168.0.17/conexion_mysql/modificarcliente.php");
+                URL url = new URL("http://192.168.0.24/conexion_mysql/modificarcliente.php");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setDoOutput(true);
@@ -143,8 +207,11 @@ public class edit extends AppCompatActivity {
                 Log.d(TAG, "Respuesta: " + respuestaServidor);
 
                 new Handler(Looper.getMainLooper()).post(() -> {
-                    Toast.makeText(edit.this, "Modificado correctamente", Toast.LENGTH_SHORT).show();
-                    finish();
+                    Toast.makeText(edit.this, respuestaServidor, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(edit.this, clientes.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish(); // Opcional: cierra la actividad actual
                 });
 
             } catch (Exception e) {

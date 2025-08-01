@@ -15,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class InicioActivity extends AppCompatActivity {
 
-    ImageButton btn_add, btn_search;
+    ImageButton btn_add, btn_search, btn_dispo;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -28,17 +28,23 @@ public class InicioActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        // boton para direccionar a la view agregar cliente
         btn_add = findViewById(R.id.btn_add);
         btn_add.setOnClickListener(v ->{
             Intent i = new Intent(InicioActivity.this, add.class);
             startActivity(i);
         });
-
+        // boton para direccionar a la view  buscar clientes.
         btn_search = findViewById(R.id.btn_search);
         btn_search.setOnClickListener(v ->{
             Intent i = new Intent(InicioActivity.this, clientes.class);
             startActivity(i);
         });
-
+        // boton para direccionar a la view estado del dispositivo.
+        btn_dispo = findViewById(R.id.btn_dispo);
+        btn_dispo.setOnClickListener(v -> {
+            Intent i = new Intent(InicioActivity.this, estado.class);
+            startActivity(i);
+        });
     }
 }
