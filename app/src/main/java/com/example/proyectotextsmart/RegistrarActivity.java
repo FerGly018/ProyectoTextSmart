@@ -84,7 +84,7 @@ public class RegistrarActivity extends AppCompatActivity {
             String clave = params[3];
 
             try {
-                URL url = new URL("http://192.168.0.24/conexion_mysql/insertuser.php");
+                URL url = new URL("http://192.168.0.22/conexion_mysql/insertuser.php");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setDoOutput(true);

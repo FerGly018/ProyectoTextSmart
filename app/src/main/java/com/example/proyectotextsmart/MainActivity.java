@@ -1,12 +1,15 @@
 package com.example.proyectotextsmart;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.InputType;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
@@ -28,13 +31,14 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Elementos UI con nuevos IDs
     Button btn_iniciar;
     EditText txt_email, txt_clave;
     TextView txt_ol, txt_registrar;
 
     ExecutorService executorService;
+    ImageView ic_nover;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,26 +47,23 @@ public class MainActivity extends AppCompatActivity {
 
         executorService = Executors.newSingleThreadExecutor();
 
-        // Referencias con los nuevos IDs
+        // referencias con los nuevos id
         txt_email = findViewById(R.id.txt_email);
         txt_clave = findViewById(R.id.txt_clave);
         btn_iniciar = findViewById(R.id.btn_iniciar);
         txt_ol = findViewById(R.id.txt_ol);
         txt_registrar = findViewById(R.id.txt_registrar);
 
-        // Click para registrar (asumiendo que la actividad sigue llamándose registrar.class)
         txt_registrar.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, RegistrarActivity.class);
             startActivity(i);
         });
 
-        // Click para iniciar sesión
         btn_iniciar.setOnClickListener(v -> {
             Log.d("LOGIN_TASK", "btn_iniciar clickeado");
             iniciarSesion();
         });
 
-        // Click en "Olvide la clave" (asumiendo que la actividad sigue siendo olvicontra.class)
         txt_ol.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, OlcontraActivity.class);
             startActivity(intent);
@@ -72,6 +73,24 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        ic_nover = findViewById(R.id.ic_nover);
+
+        // visibilidad de la contraseña
+        ic_nover.setOnClickListener(v -> {
+            if (txt_clave.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+                // mostrar contraseña
+                txt_clave.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
+                ic_nover.setImageResource(R.drawable.ic_ver); // cambiar el ícono a "ver"
+            } else {
+                // ocultar contraseña
+                txt_clave.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                ic_nover.setImageResource(R.drawable.ic_nover); // cambiar el ícono a "ocultar"
+            }
+
+            // Mover el cursor al final del texto
+            txt_clave.setSelection(txt_clave.getText().length());
         });
 
     }
@@ -100,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("LOGIN_TASK", "Ejecutando loginTask con email=" + email);
 
         try {
-            URL url = new URL("http://192.168.0.24/conexion_mysql/login.php");
+            URL url = new URL("http://192.168.0.22/conexion_mysql/login.php");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("POST");
             urlConnection.setDoOutput(true);

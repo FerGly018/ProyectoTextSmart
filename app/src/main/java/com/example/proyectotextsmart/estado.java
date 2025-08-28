@@ -2,6 +2,7 @@ package com.example.proyectotextsmart;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,7 +24,6 @@ import java.util.ArrayList;
 
 public class estado extends AppCompatActivity {
 
-
     Spinner spinner;
     CheckBox checkBoxListo, checkBoxNoSePudo;
     Button btnNotificar;
@@ -43,9 +43,9 @@ public class estado extends AppCompatActivity {
         spinner = findViewById(R.id.mi_spinner);
         checkBoxListo = findViewById(R.id.checkBox);
         checkBoxNoSePudo = findViewById(R.id.checkBox2);
-        btnNotificar = findViewById(R.id.btn_notificar); // Asegurate que el botón tenga este ID
+        btnNotificar = findViewById(R.id.btn_notificar);
 
-        // Solo se puede seleccionar un checkbox
+        // seleccionar solo un checkbox
         checkBoxListo.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) checkBoxNoSePudo.setChecked(false);
         });
@@ -57,14 +57,12 @@ public class estado extends AppCompatActivity {
         btnNotificar.setOnClickListener(v -> notificarCliente());
 
         cargarClientesDesdeServidor();
-
-
     }
 
     private void cargarClientesDesdeServidor() {
         new Thread(() -> {
             try {
-                URL url = new URL("http://192.168.0.24/conexion_mysql/obtenerdispo.php"); // Ajustá esta URL
+                URL url = new URL("http://192.168.0.22/conexion_mysql/obtenerdispo.php");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
 
@@ -97,12 +95,11 @@ public class estado extends AppCompatActivity {
                 runOnUiThread(() -> {
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(
                             estado.this,
-                            R.layout.spinner_item, // Layout personalizado
+                            R.layout.spinner_item,
                             listaSpinner
                     );
-                    adapter.setDropDownViewResource(R.layout.spinner_item); // También para el dropdown
+                    adapter.setDropDownViewResource(R.layout.spinner_item);
                     spinner.setAdapter(adapter);
-
 
                     spinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
                         @Override
@@ -113,6 +110,12 @@ public class estado extends AppCompatActivity {
                             } else {
                                 ClienteItem seleccionado = clientesList.get(position);
                                 telefonoSeleccionado = seleccionado.telefono;
+
+                                // 👉 Aseguramos que el número tenga +54
+                                if (!telefonoSeleccionado.startsWith("+54")) {
+                                    telefonoSeleccionado = "+54" + telefonoSeleccionado;
+                                }
+
                                 idSeleccionado = seleccionado.id;
                             }
                         }
@@ -149,21 +152,18 @@ public class estado extends AppCompatActivity {
             return;
         }
 
-        // Simulación de envío
-        Toast.makeText(this, "Mensaje enviado a " + telefonoSeleccionado + ":\n" + mensaje, Toast.LENGTH_LONG).show();
-
-        // Aquí podrías agregar el código real de envío por API SMS o WhatsApp si lo tenés implementado.
-
-        // Redirigir después de 3 segundos
-        new android.os.Handler().postDelayed(() -> {
-            Intent intent = new Intent(estado.this, InicioActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish(); // Opcional: cerrar esta pantalla
-        }, 3000); // 3000 milisegundos = 3 segundos
+        // 👉 Abrir WhatsApp con el mensaje
+        try {
+            String url = "https://wa.me/" + telefonoSeleccionado.replace("+", "") + "?text=" + Uri.encode(mensaje);
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+        } catch (Exception e) {
+            Toast.makeText(this, "Error al abrir WhatsApp", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    // Clase interna para representar al cliente
+    // clase interna para representar al cliente
     static class ClienteItem {
         int id;
         String modelo;

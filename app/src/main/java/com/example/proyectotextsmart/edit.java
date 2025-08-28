@@ -106,7 +106,7 @@ public class edit extends AppCompatActivity {
                     Intent intent = new Intent(edit.this, clientes.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                    finish(); // Opcional: cierra la actividad actual
+                    finish(); // cierra la actividad actual
                 });
 
 
@@ -124,7 +124,7 @@ public class edit extends AppCompatActivity {
     private void cargarClienteDesdeServidor(int idCliente) {
         new Thread(() -> {
             try {
-                URL url = new URL("http://192.168.0.24/conexion_mysql/datoscliente.php?id_clientes=" + idCliente);
+                URL url = new URL("http://192.168.0.22/conexion_mysql/datoscliente.php?id_clientes=" + idCliente);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
 
@@ -175,7 +175,7 @@ public class edit extends AppCompatActivity {
 
         new Thread(() -> {
             try {
-                URL url = new URL("http://192.168.0.24/conexion_mysql/modificarcliente.php");
+                URL url = new URL("http://192.168.0.22/conexion_mysql/modificarcliente.php");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setDoOutput(true);
@@ -211,7 +211,7 @@ public class edit extends AppCompatActivity {
                     Intent intent = new Intent(edit.this, clientes.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                    finish(); // Opcional: cierra la actividad actual
+                    finish(); // cierra la actividad actual
                 });
 
             } catch (Exception e) {

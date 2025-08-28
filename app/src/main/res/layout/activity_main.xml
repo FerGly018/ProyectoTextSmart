@@ -16,7 +16,7 @@
         android:layout_marginTop="28dp"
         android:text="Iniciar sesion"
         android:textColor="@color/white"
-        android:textSize="40sp"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +62,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_email" />
+
+    <ImageView
+        android:id="@+id/ic_nover"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="48dp"
+        android:src="@drawable/ic_nover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toEndOf="@+id/txt_clave"
         app:layout_constraintTop_toBottomOf="@+id/txt_email" />
 
     <TextView
