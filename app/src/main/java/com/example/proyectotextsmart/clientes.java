@@ -91,7 +91,7 @@ public class clientes extends AppCompatActivity {
     private class ObtenerClientes extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... voids) {
-            String urlWebService = "http://192.168.0.22/conexion_mysql/obtenercliente.php";
+            String urlWebService = "http://192.168.0.20/conexion_mysql/obtenercliente.php";
 
             try {
                 URL url = new URL(urlWebService);

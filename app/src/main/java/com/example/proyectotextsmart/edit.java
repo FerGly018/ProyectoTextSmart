@@ -75,7 +75,7 @@ public class edit extends AppCompatActivity {
         Log.d("EliminarCliente", "Eliminando cliente con id_clientes: " + idCliente);
         new Thread(() -> {
             try {
-                URL url = new URL("http://192.168.0.24/conexion_mysql/deletecliente.php");
+                URL url = new URL("http://192.168.0.20/conexion_mysql/deletecliente.php");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("POST");
                 urlConnection.setDoOutput(true);
@@ -124,7 +124,7 @@ public class edit extends AppCompatActivity {
     private void cargarClienteDesdeServidor(int idCliente) {
         new Thread(() -> {
             try {
-                URL url = new URL("http://192.168.0.22/conexion_mysql/datoscliente.php?id_clientes=" + idCliente);
+                URL url = new URL("http://192.168.0.20/conexion_mysql/datoscliente.php?id_clientes=" + idCliente);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
 
@@ -175,7 +175,7 @@ public class edit extends AppCompatActivity {
 
         new Thread(() -> {
             try {
-                URL url = new URL("http://192.168.0.22/conexion_mysql/modificarcliente.php");
+                URL url = new URL("http://192.168.0.20/conexion_mysql/modificarcliente.php");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setDoOutput(true);

@@ -62,7 +62,7 @@ public class estado extends AppCompatActivity {
     private void cargarClientesDesdeServidor() {
         new Thread(() -> {
             try {
-                URL url = new URL("http://192.168.0.22/conexion_mysql/obtenerdispo.php");
+                URL url = new URL("http://192.168.0.20/conexion_mysql/obtenerdispo.php");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
 
@@ -111,7 +111,7 @@ public class estado extends AppCompatActivity {
                                 ClienteItem seleccionado = clientesList.get(position);
                                 telefonoSeleccionado = seleccionado.telefono;
 
-                                // 👉 Aseguramos que el número tenga +54
+                                // validacion de codigo de area
                                 if (!telefonoSeleccionado.startsWith("+54")) {
                                     telefonoSeleccionado = "+54" + telefonoSeleccionado;
                                 }
@@ -152,7 +152,7 @@ public class estado extends AppCompatActivity {
             return;
         }
 
-        // 👉 Abrir WhatsApp con el mensaje
+        // abri wasap
         try {
             String url = "https://wa.me/" + telefonoSeleccionado.replace("+", "") + "?text=" + Uri.encode(mensaje);
             Intent i = new Intent(Intent.ACTION_VIEW);

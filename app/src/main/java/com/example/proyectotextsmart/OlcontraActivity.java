@@ -48,7 +48,7 @@ public class OlcontraActivity extends AppCompatActivity {
 
         new Thread(() -> {
             try {
-                URL url = new URL("http://192.168.0.22/conexion_mysql/verificar_email.php");
+                URL url = new URL("http://192.168.0.20/conexion_mysql/verificar_email.php");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setDoOutput(true);
@@ -86,7 +86,7 @@ public class OlcontraActivity extends AppCompatActivity {
     private void actualizarClave(String email, String clave) {
         new Thread(() -> {
             try {
-                URL url = new URL("http://192.168.0.22/conexion_mysql/restablecer_clave.php");
+                URL url = new URL("http://192.168.0.20/conexion_mysql/restablecer_clave.php");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setDoOutput(true);
